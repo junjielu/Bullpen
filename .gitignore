@@ -46,6 +46,14 @@ Dependencies/
 timeline.xctimeline
 playground.xcworkspace
 
+# Tuist
+Derived/
+*.xcodeproj
+*.xcworkspace
+
+# Claude Code
+.claude/
+
 # OS files
 .DS_Store
 *.swp
