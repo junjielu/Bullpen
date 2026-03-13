@@ -45,13 +45,14 @@ struct DiamondView: View {
                         .position(x: cx, y: cy + size)
 
                     // Position indicator
+                    let posOffset = positionOffset(for: position, size: size)
                     Text(position.displayName)
                         .font(.caption2)
                         .fontWeight(.bold)
                         .foregroundStyle(.white)
                         .padding(6)
                         .background(Circle().fill(Color.blue))
-                        .position(x: cx, y: cy + size * 0.4)
+                        .position(x: cx + posOffset.x, y: cy + posOffset.y)
                 }
             }
             .frame(height: 200)
@@ -72,6 +73,20 @@ struct DiamondView: View {
             Text(situation.runnersDescription)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
+        }
+    }
+
+    private func positionOffset(for position: Position, size: CGFloat) -> CGPoint {
+        switch position {
+        case .P:          return CGPoint(x: 0, y: size * 0.15)
+        case .C:          return CGPoint(x: 0, y: size * 1.2)
+        case .firstBase:  return CGPoint(x: size * 0.85, y: size * 0.15)
+        case .secondBase: return CGPoint(x: size * 0.4, y: -size * 0.65)
+        case .thirdBase:  return CGPoint(x: -size * 0.85, y: size * 0.15)
+        case .SS:         return CGPoint(x: -size * 0.4, y: -size * 0.65)
+        case .LF:         return CGPoint(x: -size * 0.85, y: -size * 0.85)
+        case .CF:         return CGPoint(x: 0, y: -size * 1.1)
+        case .RF:         return CGPoint(x: size * 0.85, y: -size * 0.85)
         }
     }
 
