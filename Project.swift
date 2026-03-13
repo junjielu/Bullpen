@@ -9,9 +9,21 @@ let project = Project(
             product: .app,
             bundleId: "com.bullpen.app",
             deploymentTargets: .iOS("17.0"),
-            infoPlist: .extendingDefault(with: [:]),
+            infoPlist: .extendingDefault(with: [
+                "UILaunchScreen": [
+                    "UIColorName": "",
+                    "UIImageName": "",
+                ],
+            ]),
             sources: ["Bullpen/Sources/**"],
-            resources: ["Bullpen/Resources/**"]
+            resources: ["Bullpen/Resources/**"],
+            settings: .settings(
+                base: [
+                    "DEVELOPMENT_TEAM": "Z9EB9XJ383",
+                    "CODE_SIGN_STYLE": "Automatic",
+                    "CODE_SIGN_IDENTITY": "Apple Development",
+                ]
+            )
         ),
     ]
 )
