@@ -15,6 +15,7 @@ let project = Project(
                     "UIImageName": "",
                 ],
                 "ITSAppUsesNonExemptEncryption": false,
+                "CFBundleShortVersionString": "1.0.0",
             ]),
             sources: ["Bullpen/Sources/**"],
             resources: ["Bullpen/Resources/**"],
