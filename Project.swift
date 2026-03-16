@@ -14,6 +14,7 @@ let project = Project(
                     "UIColorName": "",
                     "UIImageName": "",
                 ],
+                "ITSAppUsesNonExemptEncryption": false,
             ]),
             sources: ["Bullpen/Sources/**"],
             resources: ["Bullpen/Resources/**"],
