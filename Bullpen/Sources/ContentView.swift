@@ -9,6 +9,7 @@ enum AppScreen {
 
 struct ContentView: View {
     @State private var screen: AppScreen = .home
+    @State private var viewModel: FieldingSessionViewModel?
 
     var body: some View {
         switch screen {
@@ -36,16 +37,19 @@ struct ContentView: View {
 
         case .positionSelection:
             PositionSelectionView { position in
+                viewModel = FieldingSessionViewModel(position: position)
                 screen = .practice(position)
             }
 
         case .practice(let position):
-            let viewModel = FieldingSessionViewModel(position: position)
-            PracticeView(viewModel: viewModel) {
-                if viewModel.stats.total > 0 {
-                    screen = .stats(viewModel.stats, position)
-                } else {
-                    screen = .positionSelection
+            if let viewModel {
+                PracticeView(viewModel: viewModel) {
+                    if viewModel.stats.total > 0 {
+                        screen = .stats(viewModel.stats, position)
+                    } else {
+                        screen = .positionSelection
+                    }
+                    self.viewModel = nil
                 }
             }
 
