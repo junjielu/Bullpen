@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PositionSelectionView: View {
     let onSelect: (Position) -> Void
+    let onBack: () -> Void
 
     private let fieldLayout: [(Position, CGFloat, CGFloat)] = [
         (.LF, 0.2, 0.15),
@@ -17,6 +18,15 @@ struct PositionSelectionView: View {
 
     var body: some View {
         VStack(spacing: 24) {
+            HStack {
+                Button(action: onBack) {
+                    Image(systemName: "chevron.left")
+                        .font(.title3)
+                }
+                Spacer()
+            }
+            .padding(.horizontal)
+
             Text("选择守备位置")
                 .font(.title2)
                 .fontWeight(.bold)
@@ -72,5 +82,7 @@ struct DiamondShape: Shape {
 #Preview {
     PositionSelectionView { position in
         print("Selected: \(position.displayName)")
+    } onBack: {
+        print("Back")
     }
 }

@@ -39,6 +39,8 @@ struct ContentView: View {
             PositionSelectionView { position in
                 viewModel = FieldingSessionViewModel(position: position)
                 screen = .practice(position)
+            } onBack: {
+                screen = .home
             }
 
         case .practice(let position):
