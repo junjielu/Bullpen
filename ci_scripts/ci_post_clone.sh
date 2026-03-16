@@ -1,13 +1,15 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
-echo "=== Installing Tuist ==="
-curl -Ls https://install.tuist.io | bash
-export PATH="$HOME/.tuist/bin:$PATH"
+echo "=== Installing Mise ==="
+curl https://mise.run | sh
+export PATH="$HOME/.local/bin:$PATH"
+
+echo "=== Installing Tuist via Mise ==="
+mise install
 
 echo "=== Generating Xcode project ==="
-cd "$CI_PRIMARY_REPOSITORY_PATH"
-tuist install 2>/dev/null || true
-tuist generate --no-open
+mise exec -- tuist install --path ../
+mise exec -- tuist generate -p ../ --no-open
 
 echo "=== Project generated successfully ==="
